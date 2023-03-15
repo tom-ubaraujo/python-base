@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-"""Hello World Multi Linguas
+"""
+Hello World Multi Linguas
 
 Dependendo da lingua configurada no ambiente o programa exibe a correspondente
 
@@ -35,5 +36,7 @@ elif current_language == "es_SP":
     msg = "Hola, Mundo!"
 elif current_language == "fr_FR":
     msg = "Bonjour Monde!"
+elif current_language == "en_US":
+    msg = "Hello, World!"
 
 print(msg)
