@@ -1,21 +1,6 @@
 #!/usr/bin/env python
 
 """Imprime a tabuada do 1 ao 10.
-
----Tabuada do 1---
-
-     1 x 1 = 1
-     1 x 2 = 2
-     1 x 3 = 3
-...
-##################
----Tabuada do 2---
-
-     2 x 1 = 2
-     2 x 2 = 4
-     2 x 3 = 6
-...
-##################
 """
 
 __version__ = "0.1.10"
