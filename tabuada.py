@@ -6,10 +6,10 @@
 __version__ = "0.1.10"
 __author__ = "Tom"
 
-numeros = list(range(1, 11))
+num = list(range(1, 11))
 
-for n1 in numeros:
+for n1 in num:
     print("{:-^18}".format(f"Tabuada do {n1}") + "\n")
-    for n2 in numeros:
+    for n2 in num:
         print("{:^18}".format(f"{n1} X {n2} = {n1 * n2}"))
     print('\n' + "#" * 18 + '\n')
