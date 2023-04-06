@@ -7,6 +7,7 @@ que frequentas cada uma das atividades.
 __version__ = "0.1.0"
 
 # Dados
+
 sala1 = ["Erik", "Maia", "Gustavo", "Manuel", "Sofia", "Joana"]
 sala2 = ["Joao", "Antonio", "Carlos", "Maria", "Isolda"]
 
