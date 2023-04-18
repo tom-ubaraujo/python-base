@@ -23,6 +23,9 @@ operação: sum
 n1: 5
 n2: 4
 9
+
+Os resultados ficam salvos em 'infixcalc.log'
+
 """
 
 __version__ = "0.1.0"
@@ -32,6 +35,8 @@ __license__ = "Unlicensed"
 
 import os
 import sys
+from datetime import datetime
+
 """ MELHORIA ABAIXO 
 if len(sys.argv) > 4:
     print("O máximo de argumentos aceito é 3!")
@@ -102,4 +107,12 @@ elif op == 'mul':
 elif op == 'div':
     result = n1 / n2
 
+path = os.curdir
+filepath = os.path.join(path, "infixcalc.log")
+timestamp = datetime.now().isoformat()
+user = os.getenv('USER', 'anonymous')
+
+with open(filepath, "a") as file_:
+    file_.write(f"{timestamp} - {user} - {op}, {n1}, {n2} = {result}\n")
+    
 print(f"O resultado é: {result} ")
