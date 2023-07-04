@@ -17,16 +17,27 @@ import os
 import sys
 
 arguments = sys.argv[1:]
+cmds = ['read', 'write']
+path = os.curdir
+filepath = os.path.join(path, "notes.txt")
+
+if not arguments:
+    print(f"Invalid usage. Must specify subcommand {cmds}")
+    sys.exit(1)
+    
+if arguments[0].lower() not in cmds:
+    print(f"Invalid command {argument[0]}")
 
 if arguments[0].lower() == "write":
-    titulo = input("Título: ")
-    tag = input("Tag: ")
-    texto = input("Texto: ")
+    title = input("Title: ").strip()
+    tag = input("Tag: ").strip()
+    text = input("Text: ").strip()
 
-    with open("notas.txt", "w") as arquivo:
-        arquivo.write(f"Título: {titulo}\nTag: {tag}\n{texto}\n")
-        arquivo.write("--- *** ---\n")
-
+    with open("notes.txt", "a") as file_:
+       file_.write(f"{title};{tag};{text}\n")
+       
 elif arguments[0].lower() == "read":
-    for linha in open("notas.txt", "r"):
-        print(linha, end="")
+    for linha in open("notes.txt", "r"):
+        title, tag, text = linha.split(';')
+        if arguments[1].lower() == tag.lower():
+            print(f"Title: {title}; Tag: {tag}; Text: {text}")

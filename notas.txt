@@ -1,4 +1,0 @@
-Título: Nota1
-Tag: #Tag1
-Essa é uma nota de teste
---- *** ---

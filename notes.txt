@@ -1,0 +1,4 @@
+Minha primeira nota;tech;Java é lento
+Minha segunda nota;tech;Python tbm é lento
+Minha terceira nota;geral;nota de teste geral
+teste1;tech;Java é lento demais!
