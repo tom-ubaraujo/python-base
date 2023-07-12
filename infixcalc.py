@@ -64,7 +64,7 @@ match op:
 
 arguments = sys.argv[1:]
 
-# TODO: Usar exceptions
+# Validação
 if not arguments:
     op = input("Operação: ")
     n1 = input("n1: ")
@@ -95,8 +95,12 @@ for num in nums:
         num = int(num)
     valid_nums.append(num)
 
-n1, n2 = valid_nums
-
+try:
+    n1, n2 = valid_nums
+except ValueError as e: 
+    print(str(e))
+    sys.exit(1)
+    
 # TODO: Usar dict de funcoes
 if op == 'sum':
     result = n1 + n2
@@ -107,12 +111,19 @@ elif op == 'mul':
 elif op == 'div':
     result = n1 / n2
 
+print(f"O resultado é: {result} ")
+
 path = os.curdir
 filepath = os.path.join(path, "infixcalc.log")
 timestamp = datetime.now().isoformat()
 user = os.getenv('USER', 'anonymous')
 
-with open(filepath, "a") as file_:
-    file_.write(f"{timestamp} - {user} - {op}, {n1}, {n2} = {result}\n")
+try:
+    with open(filepath, "a") as file_:
+        file_.write(f"{timestamp} - {user} - {op}, {n1}, {n2} = {result}\n")
+except PermissionError as e:
+    # TODO: logging
+    print(str(e))
+    sys.exit(1)
     
-print(f"O resultado é: {result} ")
+

@@ -33,13 +33,21 @@ arguments = { "lang" : None, "count" : 1}
 
 for arg in sys.argv[1:]:
     # TODO: Tratar ValueError
-    key, value = arg.split("=")
+
+    try:
+        key, value = arg.split("=")
+    except ValueError as e:
+        print(f"[ERROR] {str(e)}")
+        print(f"You passed: {arg}, expected: --key=value")
+        sys.exit(1)
+        
     key = key.lstrip("-").strip()
     value = value.strip()
 
     if key not in arguments:
         print(f"Invalid option: '{key}' ")
         sys.exit()
+        
     arguments[key] = value
 
 current_language = arguments["lang"]
@@ -61,7 +69,13 @@ msg = {
     "en_US" : "Hello, World!",
 }
 
-if current_language in msg.keys():
-    print(msg[current_language] * int(arguments["count"]))
-else:
-    print(f"Language not known: '{current_language}' ")
+try:
+    message = msg[current_language]
+except KeyError as e:
+    print(f"[ERROR] {str(e)}")
+    print(f"Language is invalid, choose from: {list(msg.keys())}")
+    sys.exit(1)
+
+print(
+    message * int(arguments[ "count"])
+)
