@@ -28,17 +28,23 @@ __license__ = "Unlicense"
  
 import os
 import sys
+import logging
+
+log = logging.Logger("hello.py", logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+fmt = logging.Formatter('%(asctime)s %(name)s %(levelname)s l:%(lineno)d f:%(filename)s: %(message)s')
+ch.setFormatter(fmt)
+log.addHandler(ch)
 
 arguments = { "lang" : None, "count" : 1}
 
 for arg in sys.argv[1:]:
-    # TODO: Tratar ValueError
-
     try:
         key, value = arg.split("=")
     except ValueError as e:
-        print(f"[ERROR] {str(e)}")
-        print(f"You passed: {arg}, expected: --key=value")
+        log.error("You passed: %s, expected: --key=value. ERROR: %s", arg, str(e))
+        # print(f"You passed: {arg}, expected: --key=value")
         sys.exit(1)
         
     key = key.lstrip("-").strip()

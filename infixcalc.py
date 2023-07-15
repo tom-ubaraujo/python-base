@@ -36,31 +36,15 @@ __license__ = "Unlicensed"
 import os
 import sys
 from datetime import datetime
+import logging
 
-""" MELHORIA ABAIXO 
-if len(sys.argv) > 4:
-    print("O máximo de argumentos aceito é 3!")
-    sys.exit()
+log = logging.Logger("hello.py", logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+fmt = logging.Formatter('%(asctime)s %(name)s %(levelname)s l:%(lineno)d f:%(filename)s: %(message)s')
+ch.setFormatter(fmt)
+log.addHandler(ch)
 
-op, n1, n2 = sys.argv[1:]
-n1, n2 = int(n1), int(n2)
-
-match op:
-    case 'sum':
-        print(n1 + n2)
-    case 'sub':
-        print(n1 - n2)
-    case 'mul':
-        print(n1 * n2)
-    case 'div':
-        if n2 == 0:
-            print("Para divisão o divisor não pode ser zero!")
-            sys.exit()
-        else:
-            print(n1 / n2)
-    case _:
-        print("Operação inválida!")
-"""
 
 arguments = sys.argv[1:]
 
@@ -123,7 +107,7 @@ try:
         file_.write(f"{timestamp} - {user} - {op}, {n1}, {n2} = {result}\n")
 except PermissionError as e:
     # TODO: logging
-    print(str(e))
+    log.error("ERROR: %s", str(e))
     sys.exit(1)
     
 
